@@ -1,0 +1,21 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  --color-main-bg: #ffffff;
+  --color-slave-bg: #f3f4f6;
+  --color-border: #e2e3e5;
+  --color-alpha: #000000;
+  --color-beta: #111827;
+  --color-gamma: #4d5562;
+  --color-delta: #c4c4c4;
+  --color-epsilon: #5d5fef;
+  --color-zeta: #6b7280;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-main-bg);
+}
