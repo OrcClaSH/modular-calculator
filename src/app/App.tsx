@@ -1,7 +1,9 @@
-import './styles/index.scss';
+import { Button } from '@shared/ui/buttons';
+
+import './styles/main.scss';
 
 function App() {
-  return <>App</>;
+  return <Button>6</Button>;
 }
 
 export default App;
