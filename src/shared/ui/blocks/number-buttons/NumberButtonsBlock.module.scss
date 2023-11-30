@@ -1,0 +1,10 @@
+.buttons {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3, 31%);
+  justify-content: space-between;
+
+  :last-child {
+    grid-column-end: 4;
+  }
+}

@@ -1,0 +1,16 @@
+.result {
+  padding: 4px 8px;
+  height: 52px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 1;
+  font-size: 36px;
+  font-weight: 800;
+  border-radius: var(--border-radius);
+  background-color: var(--color-slave-bg);
+}
+
+.disabled {
+  opacity: 0.5;
+}

@@ -28,6 +28,8 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'import/extensions': 'off',
     'no-shadow': 'off',
+    'react/no-unused-prop-types': 1,
+    '@typescript-eslint/no-unused-vars': ['warn'],
     'react/require-default-props': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': [

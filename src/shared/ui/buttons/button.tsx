@@ -9,18 +9,11 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: SizeEnum;
 }
 
-export function Button({
-  size = SizeEnum.SM,
-  children,
-  className,
-  ...props
-}: IButtonProps) {
+export function Button({ size, children, className, ...props }: IButtonProps) {
+  const classNames = cn(className, styles.button, styles[size || '']);
+
   return (
-    <button
-      type="button"
-      {...props}
-      className={cn(className, styles.button, styles[size])}
-    >
+    <button type="button" {...props} className={classNames}>
       {children}
     </button>
   );
