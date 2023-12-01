@@ -5,9 +5,9 @@ import {
   ResultBlock,
 } from '@shared/ui/blocks';
 
-import styles from './BlockPage.module.scss';
+import styles from './SourceCalcBlocks.module.scss';
 
-export function BlocksPage() {
+export function SourceCalcBlocks() {
   return (
     <div className={styles.container}>
       <ResultBlock value={0} />

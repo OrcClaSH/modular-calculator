@@ -1,1 +1,1 @@
-export { BlocksPage } from './blocks-page/blocks-page';
+export { HomePage } from './home-page/home-page';

@@ -1,9 +1,9 @@
-import { BlocksPage } from '@pages/index';
+import { HomePage } from '@pages/index';
 
 import './styles/main.scss';
 
 function App() {
-  return <BlocksPage />;
+  return <HomePage />;
 }
 
 export default App;
