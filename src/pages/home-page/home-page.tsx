@@ -6,11 +6,15 @@ import styles from './HomePage.module.scss';
 
 export function HomePage() {
   return (
-    <main className={styles.main}>
-      <SourceCalcBlocks />
-      <div className={styles.assembly}>
-        <ToggleMode />
-        <TotalCalc />
+    <main>
+      <div className={styles.container}>
+        <div className={styles.head}>
+          <ToggleMode />
+        </div>
+        <div className={styles.assembly}>
+          <SourceCalcBlocks />
+          <TotalCalc />
+        </div>
       </div>
     </main>
   );
