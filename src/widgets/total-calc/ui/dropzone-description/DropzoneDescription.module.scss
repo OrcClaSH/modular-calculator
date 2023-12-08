@@ -3,10 +3,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 243px;
-  height: 448px;
-  border: 2px dashed var(--color-delta);
-  border-radius: 6px;
 }
 
 .img {
@@ -27,8 +23,4 @@
 
 .text:first-child {
   margin-top: 4px;
-}
-
-.active {
-  background-color: var(--color-eta);
 }
