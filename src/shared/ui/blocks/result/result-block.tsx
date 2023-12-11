@@ -1,6 +1,7 @@
+import { useDraggable } from '@dnd-kit/core';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import cn from 'classnames';
-
-import { ContainerBlockLayout } from '../container-block-layout/container-block-layout';
 
 import styles from './ResultBlock.module.scss';
 
@@ -12,10 +13,6 @@ export function ResultBlock({
   disabled?: boolean;
 }) {
   return (
-    <ContainerBlockLayout>
-      <div className={cn(styles.result, { [styles.disabled]: disabled })}>
-        {value || 0}
-      </div>
-    </ContainerBlockLayout>
+    <div className={cn(styles.result, { [styles.disabled]: disabled })}>{value || 0}</div>
   );
 }

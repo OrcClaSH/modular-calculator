@@ -1,8 +1,12 @@
 .container {
+  width: 240px;
+  height: 445px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: 2px dashed var(--color-delta);
+  border-radius: 6px;
 }
 
 .img {
@@ -23,4 +27,8 @@
 
 .text:first-child {
   margin-top: 4px;
+}
+
+.active {
+  background-color: var(--color-eta);
 }

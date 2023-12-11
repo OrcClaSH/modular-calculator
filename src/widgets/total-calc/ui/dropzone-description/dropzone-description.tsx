@@ -1,10 +1,12 @@
+import cn from 'classnames';
+
 import { DropZoneImg } from '@shared/ui/img';
 
 import styles from './DropzoneDescription.module.scss';
 
-export function DropzoneDescription() {
+export function DropzoneDescription({ active }: { active: boolean }) {
   return (
-    <div className={styles.container}>
+    <div className={cn(styles.container, { [styles.active]: active })}>
       <DropZoneImg className={styles.img} />
       <h4 className={styles.title}>Перетащите сюда</h4>
       <p className={styles.text}>любой элемент</p>
