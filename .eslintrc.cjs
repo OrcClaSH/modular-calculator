@@ -29,6 +29,7 @@ module.exports = {
     'import/extensions': 'off',
     'no-shadow': 'off',
     'react/no-unused-prop-types': 1,
+    'no-useless-return': 0,
     '@typescript-eslint/no-unused-vars': ['warn'],
     'react/require-default-props': 'off',
     'react/react-in-jsx-scope': 'off',
