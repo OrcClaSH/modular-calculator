@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-imports */
 import {
   DndContext,
   DragEndEvent,
@@ -8,15 +7,15 @@ import {
 } from '@dnd-kit/core';
 import { useMemo, useState } from 'react';
 
-import {
-  SourceCalcBlockType,
-  SourceCalcBlocks,
-  blockComponents,
-} from '@widgets/source-calc-blocks';
-import { MODE_ENUM } from '@widgets/source-calc-blocks/model/block-components';
+import { SourceCalcBlocks } from '@widgets/source-calc-blocks';
 import { ToggleMode } from '@widgets/toggle-mode';
 import { TotalCalc } from '@widgets/total-calc';
 
+import {
+  MODE_ENUM,
+  SourceCalcBlockType,
+  blockComponents,
+} from '@shared/config/block-components';
 import { BlockLayout } from '@shared/ui/blocks';
 
 import styles from './HomePage.module.scss';

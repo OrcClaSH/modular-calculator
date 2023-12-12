@@ -1,9 +1,7 @@
 import cn from 'classnames';
 import { ButtonHTMLAttributes } from 'react';
 
-// eslint-disable-next-line no-restricted-imports, import/no-restricted-paths
-import { MODE_ENUM } from '@widgets/source-calc-blocks/model/block-components';
-
+import { MODE_ENUM } from '@shared/config/block-components';
 import { SizeEnum } from '@shared/config/constants';
 
 import styles from './Button.module.scss';

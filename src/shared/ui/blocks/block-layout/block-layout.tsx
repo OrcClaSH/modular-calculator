@@ -1,10 +1,7 @@
-/* eslint-disable no-restricted-imports */
-/* eslint-disable import/no-restricted-paths */
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
-import { SourceCalcBlockType } from '@widgets/source-calc-blocks';
-import { MODE_ENUM } from '@widgets/source-calc-blocks/model/block-components';
+import { MODE_ENUM, SourceCalcBlockType } from '@shared/config/block-components';
 
 import styles from './BlockLayout.module.scss';
 

@@ -1,7 +1,4 @@
-// TODO
-// eslint-disable-next-line no-restricted-imports, import/no-restricted-paths
-import { MODE_ENUM } from '@widgets/source-calc-blocks/model/block-components';
-
+import { MODE_ENUM } from '@shared/config/block-components';
 import { Button } from '@shared/ui/buttons';
 
 import styles from './OperationBlock.module.scss';

@@ -1,9 +1,7 @@
 import cn from 'classnames';
 import { useState } from 'react';
 
-// eslint-disable-next-line no-restricted-imports
-import { MODE_ENUM } from '@widgets/source-calc-blocks/model/block-components';
-
+import { MODE_ENUM } from '@shared/config/block-components';
 import { BracketsImg, EyeImg } from '@shared/ui/img';
 
 import styles from './ToggleMode.module.scss';
