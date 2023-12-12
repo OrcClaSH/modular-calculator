@@ -6,10 +6,7 @@ import {
 } from '@dnd-kit/sortable';
 import cn from 'classnames';
 
-// TODO
-// eslint-disable-next-line import/no-restricted-paths
-import { SourceCalcBlockType } from '@widgets/source-calc-blocks';
-
+import { SourceCalcBlockType } from '@shared/config/constants';
 import { BlockLayout } from '@shared/ui/blocks';
 
 import { DropzoneDescription } from './dropzone-description';
@@ -31,8 +28,6 @@ export function TotalCalc({
   });
 
   const onDragEnd = (event: DragEndEvent) => {
-    console.log('Dropzone dragEndEvent', { event });
-
     const { active, over } = event;
     if (!over || active.id === over.id) {
       return;
