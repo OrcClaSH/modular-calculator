@@ -8,7 +8,24 @@
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
   background-color: (var(--color-main-bg));
+}
 
+.sm {
+  width: 72px;
+}
+
+.md {
+  width: 152px;
+}
+
+.lg {
+  width: 232px;
+  height: 64px;
+  color: (var(--color-main-bg));
+  background-color: var(--color-epsilon);
+}
+
+.runtime {
   @media (hover: hover) {
     &:hover {
       border: 2px solid var(--color-epsilon);
@@ -36,19 +53,4 @@
       background-color: (var(--color-main-bg));
     }
   }
-}
-
-.sm {
-  width: 72px;
-}
-
-.md {
-  width: 152px;
-}
-
-.lg {
-  width: 232px;
-  height: 64px;
-  color: (var(--color-main-bg));
-  background-color: var(--color-epsilon);
 }

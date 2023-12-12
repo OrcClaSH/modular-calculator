@@ -1,18 +1,22 @@
+/* eslint-disable no-restricted-imports */
+/* eslint-disable import/no-restricted-paths */
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
-// eslint-disable-next-line import/no-restricted-paths
 import { SourceCalcBlockType } from '@widgets/source-calc-blocks';
+import { MODE_ENUM } from '@widgets/source-calc-blocks/model/block-components';
 
 import styles from './BlockLayout.module.scss';
 
 export function BlockLayout({
   block,
   disabled,
+  mode,
   ...props
 }: {
   block: SourceCalcBlockType;
   disabled?: boolean;
+  mode?: MODE_ENUM;
   onDoubleClick?: () => void;
 }) {
   const Block = block.data;
@@ -39,7 +43,7 @@ export function BlockLayout({
       {...attributes}
       {...listeners}
     >
-      <Block disabled={disabled} />
+      <Block disabled={disabled} mode={mode} />
     </div>
   );
 }

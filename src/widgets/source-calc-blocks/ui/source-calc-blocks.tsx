@@ -1,13 +1,15 @@
 import { BlockLayout } from '@shared/ui/blocks';
 
-import { blockComponents } from '../model/block-components';
+import { MODE_ENUM, blockComponents } from '../model/block-components';
 
 import styles from './SourceCalcBlocks.module.scss';
 
 export function SourceCalcBlocks({
   totalCalcBlocksIds,
+  mode,
 }: {
   totalCalcBlocksIds: number[];
+  mode?: MODE_ENUM;
 }) {
   return (
     <div className={styles.container}>
@@ -18,6 +20,7 @@ export function SourceCalcBlocks({
             key={item.id}
             block={item}
             disabled={totalCalcBlocksIds.includes(item.id)}
+            mode={mode}
           />
         ))}
     </div>

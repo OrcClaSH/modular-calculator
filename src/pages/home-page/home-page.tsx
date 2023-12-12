@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-imports */
 import {
   DndContext,
   DragEndEvent,
@@ -12,6 +13,7 @@ import {
   SourceCalcBlocks,
   blockComponents,
 } from '@widgets/source-calc-blocks';
+import { MODE_ENUM } from '@widgets/source-calc-blocks/model/block-components';
 import { ToggleMode } from '@widgets/toggle-mode';
 import { TotalCalc } from '@widgets/total-calc';
 
@@ -74,7 +76,10 @@ export function HomePage() {
             onDragOver={onDragOver}
             onDragEnd={onDragEnd}
           >
-            <SourceCalcBlocks totalCalcBlocksIds={totalCalcBlocksIds} />
+            <SourceCalcBlocks
+              totalCalcBlocksIds={totalCalcBlocksIds}
+              mode={MODE_ENUM.CONSTRUCTOR}
+            />
             <TotalCalc
               totalCalcBlocks={totalCalcBlocks}
               totalCalcBlocksIds={totalCalcBlocksIds}
