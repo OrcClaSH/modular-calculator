@@ -5,7 +5,6 @@ import {
   ResultBlock,
 } from '@shared/ui/blocks';
 
-// export type ModeType = 'runtime' | 'constructor';
 export enum MODE_ENUM {
   RUNTIME = 'runtime',
   CONSTRUCTOR = 'constructor',
