@@ -1,4 +1,4 @@
-import { MODE_ENUM } from '@shared/config/block-components';
+import { MODE_ENUM } from '@shared/config/constants';
 import { Button } from '@shared/ui/buttons';
 
 import styles from './OperationBlock.module.scss';

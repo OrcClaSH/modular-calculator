@@ -15,7 +15,7 @@ import {
   MODE_ENUM,
   SourceCalcBlockType,
   blockComponents,
-} from '@shared/config/block-components';
+} from '@shared/config/constants';
 import { BlockLayout } from '@shared/ui/blocks';
 
 import styles from './HomePage.module.scss';

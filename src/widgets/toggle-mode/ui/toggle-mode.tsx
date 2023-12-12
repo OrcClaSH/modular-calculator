@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { useState } from 'react';
 
-import { MODE_ENUM } from '@shared/config/block-components';
+import { MODE_ENUM } from '@shared/config/constants';
 import { BracketsImg, EyeImg } from '@shared/ui/img';
 
 import styles from './ToggleMode.module.scss';

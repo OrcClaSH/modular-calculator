@@ -1,5 +1,4 @@
-import { MODE_ENUM } from '@shared/config/block-components';
-import { SizeEnum } from '@shared/config/constants';
+import { MODE_ENUM, SizeEnum } from '@shared/config/constants';
 import { Button } from '@shared/ui/buttons';
 
 export function EqualsBlock({

@@ -1,8 +1,7 @@
 import cn from 'classnames';
 import { ButtonHTMLAttributes } from 'react';
 
-import { MODE_ENUM } from '@shared/config/block-components';
-import { SizeEnum } from '@shared/config/constants';
+import { MODE_ENUM, SizeEnum } from '@shared/config/constants';
 
 import styles from './Button.module.scss';
 

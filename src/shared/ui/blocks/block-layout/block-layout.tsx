@@ -1,7 +1,7 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
-import { MODE_ENUM, SourceCalcBlockType } from '@shared/config/block-components';
+import { MODE_ENUM, SourceCalcBlockType } from '@shared/config/constants';
 
 import styles from './BlockLayout.module.scss';
 
