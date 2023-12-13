@@ -23,8 +23,8 @@ export type SourceCalcBlockType = {
     value,
     disabled,
   }: {
-    value?: string | number | undefined;
-    disabled?: boolean | undefined;
+    value?: string | number;
+    disabled?: boolean;
     mode?: MODE_ENUM;
   }) => JSX.Element;
 };

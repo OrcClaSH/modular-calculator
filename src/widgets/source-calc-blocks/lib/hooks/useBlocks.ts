@@ -15,11 +15,10 @@ export function useBlocks() {
     console.log('start', { event });
 
     if (event.active.data.current?.type === 'SourceComponent') {
-      blockComponents.map((block) => {
+      blockComponents.forEach((block) => {
         if (event.active.data.current?.name === block.name) {
           setActiveBlock(block);
         }
-        return;
       });
     }
   };
@@ -38,11 +37,10 @@ export function useBlocks() {
 
     const eventBlockId = event.active.id;
 
-    blockComponents.map((item) => {
+    blockComponents.forEach((item) => {
       if (item.id === eventBlockId && !totalCalcBlocksIds.includes(eventBlockId)) {
         setTotalCalcBlocks((prev) => [...prev, item]);
       }
-      return false;
     });
   };
 

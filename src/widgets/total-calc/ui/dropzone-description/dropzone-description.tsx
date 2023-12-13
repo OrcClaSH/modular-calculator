@@ -4,7 +4,7 @@ import { DropZoneImg } from '@shared/ui/img';
 
 import styles from './DropzoneDescription.module.scss';
 
-export function DropzoneDescription({ active }: { active: boolean }) {
+export function DropzoneDescription({ active }: Readonly<{ active: boolean }>) {
   return (
     <div className={cn(styles.container, { [styles.active]: active })}>
       <DropZoneImg className={styles.img} />

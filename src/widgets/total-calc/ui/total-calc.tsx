@@ -16,11 +16,11 @@ export function TotalCalc({
   totalCalcBlocks,
   totalCalcBlocksIds,
   setTotalCalcBlocks,
-}: {
+}: Readonly<{
   totalCalcBlocks: SourceCalcBlockType[];
   totalCalcBlocksIds: number[];
   setTotalCalcBlocks: React.Dispatch<React.SetStateAction<SourceCalcBlockType[]>>;
-}) {
+}>) {
   const isDragZoneEmpty = totalCalcBlocks.length === 0;
 
   const { isOver, setNodeRef } = useDroppable({

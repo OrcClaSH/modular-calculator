@@ -10,7 +10,13 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   mode?: MODE_ENUM;
 }
 
-export function Button({ size, children, className, mode, ...props }: IButtonProps) {
+export function Button({
+  size,
+  children,
+  className,
+  mode,
+  ...props
+}: Readonly<IButtonProps>) {
   const classNames = cn(className, styles.button, styles[size || ''], {
     [styles.runtime]: mode === MODE_ENUM.RUNTIME,
   });

@@ -10,12 +10,12 @@ export function BlockLayout({
   disabled,
   mode,
   ...props
-}: {
+}: Readonly<{
   block: SourceCalcBlockType;
   disabled?: boolean;
   mode?: MODE_ENUM;
   onDoubleClick?: () => void;
-}) {
+}>) {
   const Block = block.data;
   const { attributes, listeners, setNodeRef, transform } = useSortable({
     id: block.id,

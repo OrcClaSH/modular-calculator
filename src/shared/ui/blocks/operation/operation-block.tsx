@@ -13,10 +13,10 @@ const operations = {
 export function OperationBlock({
   disabled,
   mode,
-}: {
+}: Readonly<{
   disabled?: boolean;
   mode?: MODE_ENUM;
-}) {
+}>) {
   return (
     <div className={styles.buttons}>
       {Object.entries(operations).map(([k, v]) => (

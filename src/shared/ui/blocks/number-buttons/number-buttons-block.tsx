@@ -8,10 +8,10 @@ const buttons = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0, ','];
 export function NumberButtonsBlock({
   disabled,
   mode,
-}: {
+}: Readonly<{
   disabled?: boolean;
   mode?: MODE_ENUM;
-}) {
+}>) {
   return (
     <div className={styles.buttons}>
       {buttons.map((item) => (

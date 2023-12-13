@@ -32,10 +32,7 @@ export function HomePage() {
             onDragOver={onDragOver}
             onDragEnd={onDragEnd}
           >
-            <SourceCalcBlocks
-              totalCalcBlocksIds={totalCalcBlocksIds}
-              mode={MODE_ENUM.CONSTRUCTOR}
-            />
+            <SourceCalcBlocks totalCalcBlocksIds={totalCalcBlocksIds} />
             <TotalCalc
               totalCalcBlocks={totalCalcBlocks}
               totalCalcBlocksIds={totalCalcBlocksIds}
