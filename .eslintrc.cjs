@@ -32,6 +32,13 @@ module.exports = {
     'no-shadow': 'off',
     'react/no-unused-prop-types': 1,
     'no-useless-return': 0,
+    'no-param-reassign': [
+      'error',
+      {
+        props: true,
+        ignorePropertyModificationsFor: ['state', 'self'],
+      },
+    ],
     '@typescript-eslint/no-unused-vars': ['warn'],
     'react/require-default-props': 'off',
     'react/react-in-jsx-scope': 'off',
