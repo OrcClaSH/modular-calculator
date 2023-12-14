@@ -8,6 +8,18 @@
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
   background-color: (var(--color-main-bg));
+
+  &:disabled {
+    opacity: 0.5;
+
+    &:hover {
+      border: 1px solid var(--color-border);
+    }
+
+    &:active {
+      background-color: (var(--color-main-bg));
+    }
+  }
 }
 
 .sm {
@@ -25,7 +37,7 @@
   background-color: var(--color-epsilon);
 }
 
-.runtime {
+.active {
   @media (hover: hover) {
     &:hover {
       border: 2px solid var(--color-epsilon);
@@ -40,17 +52,5 @@
 
   &:active {
     background-color: var(--color-epsilon);
-  }
-
-  &:disabled {
-    opacity: 0.5;
-
-    &:hover {
-      border: 1px solid var(--color-border);
-    }
-
-    &:active {
-      background-color: (var(--color-main-bg));
-    }
   }
 }

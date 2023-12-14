@@ -1,24 +1,29 @@
-import { DndContext, DragOverlay } from '@dnd-kit/core';
+import {
+  DndContext,
+  DragOverlay,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
 
-import { SourceCalcBlocks, useBlocks } from '@widgets/source-calc-blocks';
+import { SourceCalcBlocks, useSourceBlocks } from '@widgets/source-calc-blocks';
 import { ToggleMode } from '@widgets/toggle-mode';
 import { TotalCalc } from '@widgets/total-calc';
 
-import { MODE_ENUM } from '@shared/config/constants';
 import { BlockLayout } from '@shared/ui/blocks';
 
 import styles from './HomePage.module.scss';
 
 export function HomePage() {
-  const {
-    totalCalcBlocks,
-    setTotalCalcBlocks,
-    activeBlock,
-    totalCalcBlocksIds,
-    onDragStart,
-    onDragEnd,
-    onDragOver,
-  } = useBlocks();
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 3,
+      },
+    }),
+  );
+
+  const { activeBlock, onDragStart, onDragEnd, onDragOver } = useSourceBlocks();
 
   return (
     <main>
@@ -28,16 +33,13 @@ export function HomePage() {
         </div>
         <div className={styles.assembly}>
           <DndContext
+            sensors={sensors}
             onDragStart={onDragStart}
             onDragOver={onDragOver}
             onDragEnd={onDragEnd}
           >
-            <SourceCalcBlocks totalCalcBlocksIds={totalCalcBlocksIds} />
-            <TotalCalc
-              totalCalcBlocks={totalCalcBlocks}
-              totalCalcBlocksIds={totalCalcBlocksIds}
-              setTotalCalcBlocks={setTotalCalcBlocks}
-            />
+            <SourceCalcBlocks />
+            <TotalCalc />
             <DragOverlay dropAnimation={null}>
               {activeBlock && <BlockLayout block={activeBlock} />}
             </DragOverlay>

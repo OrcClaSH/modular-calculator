@@ -10,6 +10,6 @@ export function ResultBlock({
   disabled?: boolean;
 }>) {
   return (
-    <div className={cn(styles.result, { [styles.disabled]: disabled })}>{value || 0}</div>
+    <div className={cn(styles.result, { [styles.disabled]: disabled })}>{value ?? 0}</div>
   );
 }

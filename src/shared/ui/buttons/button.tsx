@@ -1,24 +1,24 @@
 import cn from 'classnames';
 import { ButtonHTMLAttributes } from 'react';
 
-import { MODE_ENUM, SizeEnum } from '@shared/config/constants';
+import { SizeEnum } from '@shared/config/constants';
 
 import styles from './Button.module.scss';
 
 interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: SizeEnum;
-  mode?: MODE_ENUM;
+  active?: boolean;
 }
 
 export function Button({
   size,
   children,
   className,
-  mode,
+  active,
   ...props
 }: Readonly<IButtonProps>) {
-  const classNames = cn(className, styles.button, styles[size || ''], {
-    [styles.runtime]: mode === MODE_ENUM.RUNTIME,
+  const classNames = cn(className, styles.button, styles[size ?? ''], {
+    [styles.active]: active,
   });
 
   return (

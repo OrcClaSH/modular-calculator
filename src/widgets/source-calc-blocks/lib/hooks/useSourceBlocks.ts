@@ -1,15 +1,15 @@
 import { DragEndEvent, DragOverEvent, DragStartEvent } from '@dnd-kit/core';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
+
+import { calcActions, selectTotalCalcBlocksIds } from '@entities/calculator';
 
 import { SourceCalcBlockType, blockComponents } from '@shared/config/constants';
+import { useAppDispatch, useAppSelector } from '@shared/model/hooks';
 
-export function useBlocks() {
+export function useSourceBlocks() {
+  const dispatch = useAppDispatch();
+  const totalCalcBlocksIds = useAppSelector(selectTotalCalcBlocksIds);
   const [activeBlock, setActiveBlock] = useState<SourceCalcBlockType | null>(null);
-  const [totalCalcBlocks, setTotalCalcBlocks] = useState<SourceCalcBlockType[]>([]);
-
-  const totalCalcBlocksIds = useMemo(() => {
-    return totalCalcBlocks.map((item) => item.id);
-  }, [totalCalcBlocks]);
 
   const onDragStart = (event: DragStartEvent) => {
     console.log('start', { event });
@@ -39,16 +39,13 @@ export function useBlocks() {
 
     blockComponents.forEach((item) => {
       if (item.id === eventBlockId && !totalCalcBlocksIds.includes(eventBlockId)) {
-        setTotalCalcBlocks((prev) => [...prev, item]);
+        dispatch(calcActions.setTotalCalcBlocksIds([...totalCalcBlocksIds, item.id]));
       }
     });
   };
 
   return {
     activeBlock,
-    totalCalcBlocks,
-    setTotalCalcBlocks,
-    totalCalcBlocksIds,
     onDragStart,
     onDragOver,
     onDragEnd,

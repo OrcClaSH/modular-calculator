@@ -1,26 +1,27 @@
-import { selectCalcMode } from '@entities/calculator';
+import { selectCalcMode, selectTotalCalcBlocksIds } from '@entities/calculator';
 
-import { blockComponents } from '@shared/config/constants';
+import { MODE_ENUM, blockComponents } from '@shared/config/constants';
 import { useAppSelector } from '@shared/model/hooks';
 import { BlockLayout } from '@shared/ui/blocks';
 
 import styles from './SourceCalcBlocks.module.scss';
 
-export function SourceCalcBlocks({
-  totalCalcBlocksIds,
-}: Readonly<{
-  totalCalcBlocksIds: number[];
-}>) {
+export function SourceCalcBlocks() {
   const mode = useAppSelector(selectCalcMode);
-  const sortedBlockComponents = [...blockComponents].sort((a, b) => b.id - a.id);
+  const totalCalcBlocksIds = useAppSelector(selectTotalCalcBlocksIds);
+
+  const dndDisabled = () => {
+    return mode === MODE_ENUM.RUNTIME;
+  };
 
   return (
     <div className={styles.container}>
-      {sortedBlockComponents.map((item) => (
+      {blockComponents.map((block) => (
         <BlockLayout
-          key={item.id}
-          block={item}
-          disabled={totalCalcBlocksIds.includes(item.id)}
+          key={block.id}
+          block={block}
+          disabled={totalCalcBlocksIds.includes(block.id)}
+          dndDisabled={dndDisabled()}
           mode={mode}
         />
       ))}

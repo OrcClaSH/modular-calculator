@@ -8,18 +8,20 @@ import styles from './BlockLayout.module.scss';
 export function BlockLayout({
   block,
   disabled,
+  dndDisabled,
   mode,
   ...props
 }: Readonly<{
   block: SourceCalcBlockType;
   disabled?: boolean;
+  dndDisabled?: boolean;
   mode?: MODE_ENUM;
   onDoubleClick?: () => void;
 }>) {
   const Block = block.data;
   const { attributes, listeners, setNodeRef, transform } = useSortable({
     id: block.id,
-    disabled,
+    disabled: dndDisabled,
     data: {
       type: 'SourceComponent',
       name: block.name,

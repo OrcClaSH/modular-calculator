@@ -1,3 +1,5 @@
+import { ReactElement } from 'react';
+
 import {
   EqualsBlock,
   NumberButtonsBlock,
@@ -16,17 +18,16 @@ export enum MODE_ENUM {
   CONSTRUCTOR = 'constructor',
 }
 
+type DataFunction = (args: {
+  disabled?: boolean;
+  mode?: MODE_ENUM;
+  active?: boolean;
+}) => ReactElement;
+
 export type SourceCalcBlockType = {
   id: number;
   name: string;
-  data: ({
-    value,
-    disabled,
-  }: {
-    value?: string | number;
-    disabled?: boolean;
-    mode?: MODE_ENUM;
-  }) => JSX.Element;
+  data: DataFunction;
 };
 
 export const blockComponents: SourceCalcBlockType[] = [
@@ -34,4 +35,4 @@ export const blockComponents: SourceCalcBlockType[] = [
   { id: 2, name: 'NumberButtonsBlock', data: NumberButtonsBlock },
   { id: 3, name: 'OperationBlock', data: OperationBlock },
   { id: 4, name: 'ResultBlock', data: ResultBlock },
-];
+].sort((a, b) => b.id - a.id);

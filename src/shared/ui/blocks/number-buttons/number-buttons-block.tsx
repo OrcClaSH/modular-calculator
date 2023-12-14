@@ -1,4 +1,4 @@
-import { MODE_ENUM, SizeEnum } from '@shared/config/constants';
+import { SizeEnum } from '@shared/config/constants';
 import { Button } from '@shared/ui/buttons';
 
 import styles from './NumberButtonsBlock.module.scss';
@@ -7,10 +7,10 @@ const buttons = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0, ','];
 
 export function NumberButtonsBlock({
   disabled,
-  mode,
+  active,
 }: Readonly<{
   disabled?: boolean;
-  mode?: MODE_ENUM;
+  active?: boolean;
 }>) {
   return (
     <div className={styles.buttons}>
@@ -19,7 +19,7 @@ export function NumberButtonsBlock({
           key={item}
           size={item !== 0 ? SizeEnum.SM : SizeEnum.MD}
           disabled={disabled}
-          mode={mode}
+          active={active}
         >
           {item}
         </Button>

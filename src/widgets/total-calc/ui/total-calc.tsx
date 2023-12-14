@@ -1,66 +1,43 @@
-import { DndContext, DragEndEvent, useDroppable } from '@dnd-kit/core';
-import {
-  arrayMove,
-  SortableContext,
-  verticalListSortingStrategy,
-} from '@dnd-kit/sortable';
+import { DndContext } from '@dnd-kit/core';
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import cn from 'classnames';
 
-import { SourceCalcBlockType } from '@shared/config/constants';
 import { BlockLayout } from '@shared/ui/blocks';
+
+import { getBlock } from '../lib/get-block';
+import { useTotalBlocks } from '../lib/hooks/useTotalBlocks';
 
 import { DropzoneDescription } from './dropzone-description';
 import styles from './TotalCalc.module.scss';
 
-export function TotalCalc({
-  totalCalcBlocks,
-  totalCalcBlocksIds,
-  setTotalCalcBlocks,
-}: Readonly<{
-  totalCalcBlocks: SourceCalcBlockType[];
-  totalCalcBlocksIds: number[];
-  setTotalCalcBlocks: React.Dispatch<React.SetStateAction<SourceCalcBlockType[]>>;
-}>) {
-  const isDragZoneEmpty = totalCalcBlocks.length === 0;
-
-  const { isOver, setNodeRef } = useDroppable({
-    id: 'droppable',
-  });
-
-  const onDragEnd = (event: DragEndEvent) => {
-    const { active, over } = event;
-    if (!over || active.id === over.id) {
-      return;
-    }
-
-    setTotalCalcBlocks((blocks) => {
-      const activeBlockIndex = blocks.findIndex((item) => item.id === active.id);
-      const overBlockIndex = blocks.findIndex((item) => item.id === over.id);
-
-      return arrayMove(totalCalcBlocks, activeBlockIndex, overBlockIndex);
-    });
-  };
-
-  const handleOnDoubleCLick = (id: number) => {
-    setTotalCalcBlocks((prev) => prev.filter((block) => block.id !== id));
-  };
+export function TotalCalc() {
+  const {
+    isOver,
+    onDragEnd,
+    setNodeRef,
+    isDndDisabled,
+    isDropZoneEmpty,
+    totalCalcBlocksIds,
+    handleOnDoubleCLick,
+  } = useTotalBlocks();
 
   return (
     <DndContext onDragEnd={onDragEnd}>
       <div
-        className={cn(styles.container, { [styles.construct]: !isDragZoneEmpty })}
+        className={cn(styles.container, { [styles.construct]: !isDropZoneEmpty })}
         ref={setNodeRef}
       >
-        {isDragZoneEmpty && <DropzoneDescription active={isOver} />}
+        {isDropZoneEmpty && <DropzoneDescription active={isOver} />}
         <SortableContext
           items={totalCalcBlocksIds}
           strategy={verticalListSortingStrategy}
+          disabled={isDndDisabled}
         >
-          {totalCalcBlocks.map((block) => (
+          {totalCalcBlocksIds.map((blockId) => (
             <BlockLayout
-              block={block}
-              key={block.id}
-              onDoubleClick={() => handleOnDoubleCLick(block.id)}
+              block={getBlock(blockId)}
+              key={blockId}
+              onDoubleClick={() => handleOnDoubleCLick(blockId)}
             />
           ))}
         </SortableContext>

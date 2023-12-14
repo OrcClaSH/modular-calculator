@@ -25,14 +25,14 @@ export function ToggleMode() {
       <button
         type="button"
         className={classNames(MODE_ENUM.RUNTIME)}
-        onClick={() => handleClick()}
+        onClick={handleClick}
       >
         <EyeImg className={styles.image} /> Runtime
       </button>
       <button
         type="button"
         className={classNames(MODE_ENUM.CONSTRUCTOR)}
-        onClick={() => handleClick()}
+        onClick={handleClick}
       >
         <BracketsImg className={styles.image} /> Constructor
       </button>
