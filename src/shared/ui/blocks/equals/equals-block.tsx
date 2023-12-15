@@ -3,13 +3,11 @@ import { Button } from '@shared/ui/buttons';
 
 export function EqualsBlock({
   disabled,
-  mode,
 }: Readonly<{
   disabled?: boolean;
-  mode?: MODE_ENUM;
 }>) {
   return (
-    <Button size={SizeEnum.LG} disabled={disabled} mode={mode}>
+    <Button size={SizeEnum.LG} disabled={disabled}>
       =
     </Button>
   );
