@@ -1,7 +1,7 @@
 export function DropLineImg() {
   return (
     <svg
-      width="250"
+      width="100%"
       height="6"
       viewBox="0 0 250 6"
       fill="none"
