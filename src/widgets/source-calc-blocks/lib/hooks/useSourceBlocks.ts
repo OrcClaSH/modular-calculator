@@ -12,8 +12,6 @@ export function useSourceBlocks() {
   const [activeBlock, setActiveBlock] = useState<SourceCalcBlockType | null>(null);
 
   const onDragStart = (event: DragStartEvent) => {
-    console.log('start', { event });
-
     if (event.active.data.current?.type === 'SourceComponent') {
       blockComponents.forEach((block) => {
         if (event.active.data.current?.name === block.name) {
@@ -23,12 +21,7 @@ export function useSourceBlocks() {
     }
   };
 
-  const onDragOver = (event: DragOverEvent) => {
-    console.log('over', { event });
-  };
-
   const onDragEnd = (event: DragEndEvent) => {
-    console.log('end', { event });
     setActiveBlock(null);
 
     if (event.over?.id !== 'droppable') {
@@ -47,7 +40,6 @@ export function useSourceBlocks() {
   return {
     activeBlock,
     onDragStart,
-    onDragOver,
     onDragEnd,
   };
 }

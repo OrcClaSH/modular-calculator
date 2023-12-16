@@ -23,7 +23,7 @@ export function HomePage() {
     }),
   );
 
-  const { activeBlock, onDragStart, onDragEnd, onDragOver } = useSourceBlocks();
+  const { activeBlock, onDragStart, onDragEnd } = useSourceBlocks();
 
   return (
     <main>
@@ -32,12 +32,7 @@ export function HomePage() {
           <ToggleMode />
         </div>
         <div className={styles.assembly}>
-          <DndContext
-            sensors={sensors}
-            onDragStart={onDragStart}
-            onDragOver={onDragOver}
-            onDragEnd={onDragEnd}
-          >
+          <DndContext sensors={sensors} onDragStart={onDragStart} onDragEnd={onDragEnd}>
             <SourceCalcBlocks />
             <TotalCalc />
             <DragOverlay dropAnimation={null}>
