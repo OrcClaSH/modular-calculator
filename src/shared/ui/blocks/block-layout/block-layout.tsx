@@ -56,6 +56,7 @@ export function BlockLayout({
       className={cn(styles.container, {
         [styles.shadow]: notMoved,
         [styles.passive]: passive,
+        [styles.move]: isDragging,
       })}
       ref={setNodeRef}
       style={style}

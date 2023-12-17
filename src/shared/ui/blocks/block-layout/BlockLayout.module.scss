@@ -12,3 +12,10 @@
 .passive {
   opacity: 0.5;
 }
+
+.move {
+  cursor: pointer;
+  & * {
+    cursor: move;
+  }
+}
