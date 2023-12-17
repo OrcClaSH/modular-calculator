@@ -1,5 +1,6 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import cn from 'classnames';
 
 import { MODE_ENUM, SourceCalcBlockType } from '@shared/config/constants';
 import { DropLineImg } from '@shared/ui/img';
@@ -8,15 +9,21 @@ import styles from './BlockLayout.module.scss';
 
 export function BlockLayout({
   block,
-  disabled,
+  notMoved,
   dndDisabled,
+  passive,
+  disabled,
   mode,
+  activeAnimation,
   ...props
 }: Readonly<{
   block: SourceCalcBlockType;
-  disabled?: boolean;
+  notMoved?: boolean;
   dndDisabled?: boolean;
+  passive?: boolean;
+  disabled?: boolean;
   mode?: MODE_ENUM;
+  activeAnimation?: boolean;
   onDoubleClick?: () => void;
 }>) {
   const Block = block.data;
@@ -46,14 +53,22 @@ export function BlockLayout({
 
   return (
     <div
-      className={styles.container}
+      className={cn(styles.container, {
+        [styles.shadow]: notMoved,
+        [styles.passive]: passive,
+      })}
       ref={setNodeRef}
       style={style}
       {...props}
       {...attributes}
       {...listeners}
     >
-      <Block disabled={disabled} mode={mode} />
+      <Block
+        disabled={disabled}
+        passive={passive}
+        mode={mode}
+        activeAnimation={activeAnimation}
+      />
     </div>
   );
 }

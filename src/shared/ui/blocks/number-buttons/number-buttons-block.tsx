@@ -7,10 +7,10 @@ const buttons = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0, ','];
 
 export function NumberButtonsBlock({
   disabled,
-  active,
+  activeAnimation,
 }: Readonly<{
   disabled?: boolean;
-  active?: boolean;
+  activeAnimation?: boolean;
 }>) {
   return (
     <div className={styles.buttons}>
@@ -19,7 +19,7 @@ export function NumberButtonsBlock({
           key={item}
           size={item !== 0 ? SizeEnum.SM : SizeEnum.MD}
           disabled={disabled}
-          active={active}
+          activeAnimation={activeAnimation}
         >
           {item}
         </Button>

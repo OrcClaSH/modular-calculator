@@ -8,6 +8,10 @@ import {
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import cn from 'classnames';
 
+import { selectCalcMode } from '@entities/calculator';
+
+import { MODE_ENUM } from '@shared/config/constants';
+import { useAppSelector } from '@shared/model/hooks';
 import { BlockLayout } from '@shared/ui/blocks';
 import { DropLineImg } from '@shared/ui/img';
 
@@ -18,6 +22,7 @@ import { DropzoneDescription } from './dropzone-description';
 import styles from './TotalCalc.module.scss';
 
 export function TotalCalc() {
+  const mode = useAppSelector(selectCalcMode);
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -56,6 +61,9 @@ export function TotalCalc() {
               block={getBlock(blockId)}
               key={blockId}
               onDoubleClick={() => handleOnDoubleCLick(blockId)}
+              dndDisabled={mode === MODE_ENUM.RUNTIME}
+              activeAnimation={mode === MODE_ENUM.RUNTIME}
+              disabled={mode === MODE_ENUM.CONSTRUCTOR}
             />
           ))}
         </SortableContext>

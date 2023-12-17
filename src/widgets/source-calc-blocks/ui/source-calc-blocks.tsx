@@ -10,21 +10,26 @@ export function SourceCalcBlocks() {
   const mode = useAppSelector(selectCalcMode);
   const totalCalcBlocksIds = useAppSelector(selectTotalCalcBlocksIds);
 
-  const dndDisabled = () => {
-    return mode === MODE_ENUM.RUNTIME;
+  const blockComponentsShow = mode === MODE_ENUM.CONSTRUCTOR;
+  const isDisabled = (blockId: number) => {
+    return totalCalcBlocksIds.includes(blockId) || !blockComponentsShow;
   };
 
   return (
     <div className={styles.container}>
-      {blockComponents.map((block) => (
-        <BlockLayout
-          key={block.id}
-          block={block}
-          disabled={totalCalcBlocksIds.includes(block.id)}
-          dndDisabled={dndDisabled()}
-          mode={mode}
-        />
-      ))}
+      {blockComponentsShow &&
+        blockComponents.map((block) => (
+          <BlockLayout
+            key={block.id}
+            block={block}
+            disabled
+            dndDisabled={isDisabled(block.id)}
+            notMoved={!isDisabled(block.id)}
+            passive={isDisabled(block.id)}
+            activeAnimation={false}
+            mode={mode}
+          />
+        ))}
     </div>
   );
 }

@@ -11,13 +11,15 @@ const operations = {
 
 export function OperationBlock({
   disabled,
+  activeAnimation,
 }: Readonly<{
   disabled?: boolean;
+  activeAnimation?: boolean;
 }>) {
   return (
     <div className={styles.buttons}>
       {Object.entries(operations).map(([k, v]) => (
-        <Button key={k} onClick={v} disabled={disabled}>
+        <Button key={k} onClick={v} disabled={disabled} activeAnimation={activeAnimation}>
           {k}
         </Button>
       ))}

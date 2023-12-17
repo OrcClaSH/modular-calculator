@@ -7,18 +7,18 @@ import styles from './Button.module.scss';
 
 interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: SizeEnum;
-  active?: boolean;
+  activeAnimation?: boolean;
 }
 
 export function Button({
   size,
   children,
   className,
-  active,
+  activeAnimation,
   ...props
 }: Readonly<IButtonProps>) {
   const classNames = cn(className, styles.button, styles[size ?? ''], {
-    [styles.active]: active,
+    [styles.active]: activeAnimation,
   });
 
   return (

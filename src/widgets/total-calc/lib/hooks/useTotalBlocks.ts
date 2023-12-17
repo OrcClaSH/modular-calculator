@@ -57,6 +57,8 @@ export function useTotalBlocks() {
   };
 
   const handleOnDoubleCLick = (id: number) => {
+    if (mode === MODE_ENUM.RUNTIME) return;
+
     const totalCalcBlocksIdsFiltered = totalCalcBlocksIds.filter(
       (blockId) => blockId !== id,
     );

@@ -20,8 +20,10 @@ export enum MODE_ENUM {
 
 type DataFunction = (args: {
   disabled?: boolean;
+  passive?: boolean;
+  value?: number;
   mode?: MODE_ENUM;
-  active?: boolean;
+  activeAnimation?: boolean;
 }) => ReactElement;
 
 export type SourceCalcBlockType = {

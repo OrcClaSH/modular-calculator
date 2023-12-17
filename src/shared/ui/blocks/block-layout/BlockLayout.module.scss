@@ -3,5 +3,12 @@
   padding: 4px;
   border-radius: var(--border-radius-block);
   background-color: var(--color-main-bg);
+}
+
+.shadow {
   box-shadow: var(--box-shadow);
+}
+
+.passive {
+  opacity: 0.5;
 }
