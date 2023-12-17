@@ -16,6 +16,8 @@
 }
 
 .active {
+  cursor: pointer;
+
   @media (hover: hover) {
     &:hover {
       border: 2px solid var(--color-epsilon);
