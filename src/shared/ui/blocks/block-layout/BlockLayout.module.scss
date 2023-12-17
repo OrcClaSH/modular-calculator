@@ -3,14 +3,26 @@
   padding: 4px;
   border-radius: var(--border-radius-block);
   background-color: var(--color-main-bg);
+
+  cursor: pointer;
+  & * {
+    cursor: pointer;
+  }
 }
 
-.shadow {
+.notMoved {
   box-shadow: var(--box-shadow);
 }
 
 .passive {
   opacity: 0.5;
+}
+
+.cursorNoDrop {
+  cursor: no-drop;
+  & * {
+    cursor: no-drop;
+  }
 }
 
 .move {

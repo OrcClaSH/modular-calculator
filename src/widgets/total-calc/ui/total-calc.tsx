@@ -10,7 +10,7 @@ import cn from 'classnames';
 
 import { selectCalcMode } from '@entities/calculator';
 
-import { MODE_ENUM } from '@shared/config/constants';
+import { DND_DISABLED, MODE_ENUM } from '@shared/config/constants';
 import { useAppSelector } from '@shared/model/hooks';
 import { BlockLayout } from '@shared/ui/blocks';
 import { DropLineImg } from '@shared/ui/img';
@@ -23,6 +23,9 @@ import styles from './TotalCalc.module.scss';
 
 export function TotalCalc() {
   const mode = useAppSelector(selectCalcMode);
+  const isModeConstructor = mode === MODE_ENUM.CONSTRUCTOR;
+  const isModeRuntime = mode === MODE_ENUM.RUNTIME;
+
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -61,9 +64,10 @@ export function TotalCalc() {
               block={getBlock(blockId)}
               key={blockId}
               onDoubleClick={() => handleOnDoubleCLick(blockId)}
-              dndDisabled={mode === MODE_ENUM.RUNTIME}
-              activeAnimation={mode === MODE_ENUM.RUNTIME}
-              disabled={mode === MODE_ENUM.CONSTRUCTOR}
+              dndDisabled={isModeRuntime || DND_DISABLED.includes(blockId)}
+              activeAnimation={isModeRuntime}
+              disabled={isModeConstructor}
+              cursorNoDrop={DND_DISABLED.includes(blockId) && isModeConstructor}
             />
           ))}
         </SortableContext>

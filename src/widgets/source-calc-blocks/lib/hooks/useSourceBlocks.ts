@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { calcActions, selectTotalCalcBlocksIds } from '@entities/calculator';
 
-import { SourceCalcBlockType, blockComponents } from '@shared/config/constants';
+import { SourceCalcBlockType, BLOCK_COMPONENTS } from '@shared/config/constants';
 import { useAppDispatch, useAppSelector } from '@shared/model/hooks';
 
 export function useSourceBlocks() {
@@ -13,7 +13,7 @@ export function useSourceBlocks() {
 
   const onDragStart = (event: DragStartEvent) => {
     if (event.active.data.current?.type === 'SourceComponent') {
-      blockComponents.forEach((block) => {
+      BLOCK_COMPONENTS.forEach((block) => {
         if (event.active.data.current?.name === block.name) {
           setActiveBlock(block);
         }
@@ -30,7 +30,7 @@ export function useSourceBlocks() {
 
     const eventBlockId = event.active.id;
 
-    blockComponents.forEach((item) => {
+    BLOCK_COMPONENTS.forEach((item) => {
       if (item.id === eventBlockId && !totalCalcBlocksIds.includes(eventBlockId)) {
         dispatch(calcActions.setTotalCalcBlocksIds([...totalCalcBlocksIds, item.id]));
       }

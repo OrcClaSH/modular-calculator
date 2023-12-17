@@ -1,6 +1,6 @@
 import { selectCalcMode, selectTotalCalcBlocksIds } from '@entities/calculator';
 
-import { MODE_ENUM, blockComponents } from '@shared/config/constants';
+import { MODE_ENUM, BLOCK_COMPONENTS } from '@shared/config/constants';
 import { useAppSelector } from '@shared/model/hooks';
 import { BlockLayout } from '@shared/ui/blocks';
 
@@ -18,7 +18,7 @@ export function SourceCalcBlocks() {
   return (
     <div className={styles.container}>
       {blockComponentsShow &&
-        blockComponents.map((block) => (
+        BLOCK_COMPONENTS.map((block) => (
           <BlockLayout
             key={block.id}
             block={block}
@@ -26,6 +26,7 @@ export function SourceCalcBlocks() {
             dndDisabled={isDisabled(block.id)}
             notMoved={!isDisabled(block.id)}
             passive={isDisabled(block.id)}
+            cursorNoDrop={isDisabled(block.id)}
             activeAnimation={false}
             mode={mode}
           />

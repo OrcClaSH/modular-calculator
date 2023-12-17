@@ -15,6 +15,7 @@ export function BlockLayout({
   disabled,
   mode,
   activeAnimation,
+  cursorNoDrop,
   ...props
 }: Readonly<{
   block: SourceCalcBlockType;
@@ -24,9 +25,11 @@ export function BlockLayout({
   disabled?: boolean;
   mode?: MODE_ENUM;
   activeAnimation?: boolean;
+  cursorNoDrop?: boolean;
   onDoubleClick?: () => void;
 }>) {
   const Block = block.data;
+
   const { attributes, listeners, setNodeRef, transform, transition, isDragging, active } =
     useSortable({
       id: block.id,
@@ -54,7 +57,8 @@ export function BlockLayout({
   return (
     <div
       className={cn(styles.container, {
-        [styles.shadow]: notMoved,
+        [styles.cursorNoDrop]: cursorNoDrop,
+        [styles.notMoved]: notMoved,
         [styles.passive]: passive,
         [styles.move]: isDragging,
       })}

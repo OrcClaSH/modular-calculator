@@ -7,7 +7,7 @@ import { calcActions, selectCalcMode } from '@entities/calculator';
 import {
   MODE_ENUM,
   SourceCalcBlockType,
-  blockComponents,
+  BLOCK_COMPONENTS,
 } from '@shared/config/constants';
 import { useAppDispatch, useAppSelector } from '@shared/model/hooks';
 
@@ -31,7 +31,7 @@ export function useTotalBlocks() {
 
   const onDragStart = (event: DragStartEvent) => {
     if (event.active.data.current?.type === 'SourceComponent') {
-      blockComponents.forEach((block) => {
+      BLOCK_COMPONENTS.forEach((block) => {
         if (event.active.data.current?.name === block.name) {
           setActiveBlock(block);
         }
