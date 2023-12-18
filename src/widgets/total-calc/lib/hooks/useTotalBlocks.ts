@@ -8,6 +8,7 @@ import {
   MODE_ENUM,
   SourceCalcBlockType,
   BLOCK_COMPONENTS,
+  DND_DISABLED,
 } from '@shared/config/constants';
 import { useAppDispatch, useAppSelector } from '@shared/model/hooks';
 
@@ -45,6 +46,10 @@ export function useTotalBlocks() {
   const onDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
     if (!over || active.id === over.id) {
+      return;
+    }
+
+    if (DND_DISABLED.includes(over?.data?.current?.block?.id)) {
       return;
     }
 

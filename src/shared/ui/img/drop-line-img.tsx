@@ -1,6 +1,8 @@
-export function DropLineImg() {
+export function DropLineImg({ className }: { className?: string }) {
   return (
     <svg
+      className={className}
+      color="#5d5fef"
       width="100%"
       height="6"
       viewBox="0 0 250 6"
@@ -9,7 +11,7 @@ export function DropLineImg() {
     >
       <path
         d="M0.113249 3L3 5.88675L5.88675 3L3 0.113249L0.113249 3ZM249.887 3L247 0.113249L244.113 3L247 5.88675L249.887 3ZM3 3.5H247V2.5H3V3.5Z"
-        fill="#5D5FEF"
+        fill="currentColor"
       />
     </svg>
   );

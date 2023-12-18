@@ -2,7 +2,7 @@ import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import cn from 'classnames';
 
-import { MODE_ENUM, SourceCalcBlockType } from '@shared/config/constants';
+import { DND_DISABLED, MODE_ENUM, SourceCalcBlockType } from '@shared/config/constants';
 import { DropLineImg } from '@shared/ui/img';
 
 import styles from './BlockLayout.module.scss';
@@ -30,16 +30,24 @@ export function BlockLayout({
 }>) {
   const Block = block.data;
 
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging, active } =
-    useSortable({
-      id: block.id,
-      disabled: dndDisabled,
-      data: {
-        type: 'SourceComponent',
-        name: block.name,
-        block,
-      },
-    });
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+    active,
+    over,
+  } = useSortable({
+    id: block.id,
+    disabled: dndDisabled,
+    data: {
+      type: 'SourceComponent',
+      name: block.name,
+      block,
+    },
+  });
 
   const style = {
     transform: CSS.Translate.toString(transform),
@@ -47,9 +55,12 @@ export function BlockLayout({
   };
 
   if (isDragging && active?.data?.current?.sortable.containerId !== 'Sortable') {
+    const classNames = DND_DISABLED.includes(over?.data?.current?.block.id)
+      ? styles.error
+      : '';
     return (
       <div ref={setNodeRef} style={style}>
-        <DropLineImg />
+        <DropLineImg className={classNames} />
       </div>
     );
   }
