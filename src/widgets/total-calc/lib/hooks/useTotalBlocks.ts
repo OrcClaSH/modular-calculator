@@ -1,6 +1,6 @@
 import { DragEndEvent, DragStartEvent, useDroppable } from '@dnd-kit/core';
 import { arrayMove } from '@dnd-kit/sortable';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { calcActions, selectCalcMode } from '@entities/calculator';
 
@@ -28,6 +28,9 @@ export function useTotalBlocks() {
     active?.data?.current?.type === 'SourceComponent' &&
     over?.id === 'droppable' &&
     !isDropZoneEmpty;
+
+  const isNeedFirstDropLine =
+    active?.data?.current?.name === 'ResultBlock' && isNeedDropLine;
 
   const onDragStart = (event: DragStartEvent) => {
     if (event.active.data.current?.type === 'SourceComponent') {
@@ -77,6 +80,7 @@ export function useTotalBlocks() {
     isNeedDropLine,
     isDropZoneEmpty,
     totalCalcBlocksIds,
+    isNeedFirstDropLine,
     handleOnDoubleCLick,
   };
 }

@@ -3,7 +3,11 @@ import { useState } from 'react';
 
 import { calcActions, selectTotalCalcBlocksIds } from '@entities/calculator';
 
-import { SourceCalcBlockType, BLOCK_COMPONENTS } from '@shared/config/constants';
+import {
+  SourceCalcBlockType,
+  BLOCK_COMPONENTS,
+  DND_DISABLED,
+} from '@shared/config/constants';
 import { useAppDispatch, useAppSelector } from '@shared/model/hooks';
 
 export function useSourceBlocks() {
@@ -32,7 +36,11 @@ export function useSourceBlocks() {
 
     BLOCK_COMPONENTS.forEach((item) => {
       if (item.id === eventBlockId && !totalCalcBlocksIds.includes(eventBlockId)) {
-        dispatch(calcActions.setTotalCalcBlocksIds([...totalCalcBlocksIds, item.id]));
+        if (DND_DISABLED.includes(eventBlockId)) {
+          dispatch(calcActions.setTotalCalcBlocksIds([item.id, ...totalCalcBlocksIds]));
+        } else {
+          dispatch(calcActions.setTotalCalcBlocksIds([...totalCalcBlocksIds, item.id]));
+        }
       }
     });
   };

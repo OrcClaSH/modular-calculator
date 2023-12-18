@@ -44,6 +44,7 @@ export function TotalCalc() {
     isNeedDropLine,
     isDropZoneEmpty,
     totalCalcBlocksIds,
+    isNeedFirstDropLine,
     handleOnDoubleCLick,
   } = useTotalBlocks();
 
@@ -54,6 +55,7 @@ export function TotalCalc() {
         ref={setNodeRef}
       >
         {isDropZoneEmpty && <DropzoneDescription active={isOver} />}
+        {isNeedFirstDropLine && <DropLineImg />}
         <SortableContext
           items={totalCalcBlocksIds}
           strategy={verticalListSortingStrategy}
@@ -71,7 +73,7 @@ export function TotalCalc() {
             />
           ))}
         </SortableContext>
-        {isNeedDropLine && <DropLineImg />}
+        {isNeedDropLine && !isNeedFirstDropLine && <DropLineImg />}
         <DragOverlay dropAnimation={null}>
           {activeBlock && <BlockLayout block={activeBlock} />}
         </DragOverlay>
