@@ -3,10 +3,9 @@
   padding: 4px;
   border-radius: var(--border-radius-block);
   background-color: var(--color-main-bg);
-
-  cursor: pointer;
+  cursor: auto;
   & * {
-    cursor: pointer;
+    cursor: auto;
   }
 }
 
@@ -18,7 +17,14 @@
   opacity: 0.5;
 }
 
-.cursorNoDrop {
+.draggable {
+  cursor: pointer;
+  & * {
+    cursor: pointer;
+  }
+}
+
+.noDraggable {
   cursor: no-drop;
   & * {
     cursor: no-drop;
@@ -26,7 +32,7 @@
 }
 
 .move {
-  cursor: pointer;
+  cursor: move;
   & * {
     cursor: move;
   }

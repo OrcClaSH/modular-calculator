@@ -65,14 +65,17 @@ export function BlockLayout({
     );
   }
 
+  const classNames = cn(styles.container, {
+    [styles.draggable]: !activeAnimation,
+    [styles.noDraggable]: cursorNoDrop,
+    [styles.notMoved]: notMoved,
+    [styles.passive]: passive,
+    [styles.move]: isDragging,
+  });
+
   return (
     <div
-      className={cn(styles.container, {
-        [styles.cursorNoDrop]: cursorNoDrop,
-        [styles.notMoved]: notMoved,
-        [styles.passive]: passive,
-        [styles.move]: isDragging,
-      })}
+      className={classNames}
       ref={setNodeRef}
       style={style}
       {...props}
