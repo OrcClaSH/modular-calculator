@@ -9,6 +9,7 @@
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
   background-color: (var(--color-main-bg));
+  pointer-events: none;
   transition:
     border 0.1s ease,
     color 0.1s ease,
@@ -17,6 +18,7 @@
 
 .active {
   cursor: pointer;
+  pointer-events: all;
 
   @media (hover: hover) {
     &:hover {
