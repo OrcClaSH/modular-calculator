@@ -31,7 +31,7 @@ export function useTotalBlocks() {
     !isDropZoneEmpty;
 
   const isNeedFirstDropLine =
-    active?.data?.current?.name === 'ResultBlock' && isNeedDropLine;
+    active?.data?.current?.name === 'DisplayBlock' && isNeedDropLine;
 
   const onDragStart = (event: DragStartEvent) => {
     if (event.active.data.current?.type === 'SourceComponent') {

@@ -4,7 +4,7 @@ import {
   EqualsBlock,
   NumberButtonsBlock,
   OperationBlock,
-  ResultBlock,
+  DisplayBlock,
 } from '@shared/ui/blocks';
 
 export enum SizeEnum {
@@ -36,7 +36,7 @@ export const BLOCK_COMPONENTS: SourceCalcBlockType[] = [
   { id: 1, name: 'EqualsBlock', data: EqualsBlock },
   { id: 2, name: 'NumberButtonsBlock', data: NumberButtonsBlock },
   { id: 3, name: 'OperationBlock', data: OperationBlock },
-  { id: 4, name: 'ResultBlock', data: ResultBlock },
+  { id: 4, name: 'DisplayBlock', data: DisplayBlock },
 ].sort((a, b) => b.id - a.id);
 
 export const DND_DISABLED = [4];

@@ -1,5 +1,5 @@
 export { BlockLayout } from './block-layout/block-layout';
-export { ResultBlock } from './result/result-block';
+export { DisplayBlock } from './display/display-block';
 export { OperationBlock } from './operation/operation-block';
 export { NumberButtonsBlock } from './number-buttons/number-buttons-block';
 export { EqualsBlock } from './equals/equals-block';
