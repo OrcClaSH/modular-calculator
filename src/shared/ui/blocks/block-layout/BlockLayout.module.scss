@@ -3,6 +3,7 @@
   padding: 4px;
   border-radius: var(--border-radius-block);
   background-color: var(--color-main-bg);
+  touch-action: none;
   cursor: auto;
   & * {
     cursor: auto;
