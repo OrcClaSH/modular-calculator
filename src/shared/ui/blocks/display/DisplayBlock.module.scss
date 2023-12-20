@@ -5,8 +5,12 @@
   justify-content: flex-end;
   align-items: center;
   flex: 1;
-  font-size: 36px;
+  font-size: 24px;
   font-weight: 800;
   border-radius: var(--border-radius);
   background-color: var(--color-slave-bg);
+}
+
+.lg {
+  font-size: 36px;
 }
