@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { CALC_OPERATIONS, ERROR_DISPLAY_TEXT, MODE_ENUM } from '@shared/config/constants';
-import { replaceZero } from '@shared/lib/replace-zero';
+import { removeLeadingZeros } from '@shared/lib/remove-leading-zeros';
 
 interface ICalcState {
   calcMode: MODE_ENUM;
@@ -54,19 +54,19 @@ export const calcSlice = createSlice({
           return;
         }
         state.value += value;
-        state.result = replaceZero(state.value);
+        state.result = removeLeadingZeros(state.value);
         return;
       }
 
       if (state.isLastString) {
         state.value += value;
         state.isLastString = false;
-        state.result = replaceZero(state.value);
+        state.result = removeLeadingZeros(state.value);
         return;
       }
 
       state.value += value;
-      state.result = replaceZero(state.value);
+      state.result = removeLeadingZeros(state.value);
     },
 
     calculate(state) {
