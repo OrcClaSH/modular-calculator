@@ -24,6 +24,8 @@ type DataFunction = (args: {
   value?: number;
   mode?: MODE_ENUM;
   activeAnimation?: boolean;
+  onClickButton?: (value: number | string) => void;
+  handleClickEquals?: () => void;
 }) => ReactElement;
 
 export type SourceCalcBlockType = {
@@ -40,3 +42,18 @@ export const BLOCK_COMPONENTS: SourceCalcBlockType[] = [
 ].sort((a, b) => b.id - a.id);
 
 export const DND_DISABLED = [4];
+
+export const ERROR_DISPLAY_TEXT = 'Не определено';
+
+export const CALC_OPERATIONS: { [key: string]: (a: number, b: number) => number } = {
+  '+': (a, b) => a + b,
+  '-': (a, b) => a - b,
+  '/': (a, b) => {
+    if (!b) throw new Error();
+    return a / b;
+  },
+  x: (a, b) => a * b,
+};
+
+export const NUMBER_BUTTONS = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0, ','];
+export const CALC_OPERATION_BUTTONS = ['/', 'x', '-', '+'];

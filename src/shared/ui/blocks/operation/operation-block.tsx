@@ -1,26 +1,33 @@
+import { CALC_OPERATION_BUTTONS } from '@shared/config/constants';
 import { Button } from '@shared/ui/buttons';
 
 import styles from './OperationBlock.module.scss';
 
-const operations = {
-  '/': () => console.log('click'),
-  x: () => console.log('click'),
-  '-': () => console.log('click'),
-  '+': () => console.log('click'),
-};
-
 export function OperationBlock({
   disabled,
   activeAnimation,
+  onClickButton,
 }: Readonly<{
   disabled?: boolean;
   activeAnimation?: boolean;
+  onClickButton?: (value: number | string) => void;
 }>) {
+  const handleClickButton = (item: string | number) => {
+    if (onClickButton) {
+      onClickButton(item);
+    }
+  };
+
   return (
     <div className={styles.buttons}>
-      {Object.entries(operations).map(([k, v]) => (
-        <Button key={k} onClick={v} disabled={disabled} activeAnimation={activeAnimation}>
-          {k}
+      {CALC_OPERATION_BUTTONS.map((operator) => (
+        <Button
+          key={operator}
+          onClick={() => handleClickButton(operator)}
+          disabled={disabled}
+          activeAnimation={activeAnimation}
+        >
+          {operator}
         </Button>
       ))}
     </div>

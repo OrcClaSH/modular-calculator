@@ -16,6 +16,9 @@ export function BlockLayout({
   mode,
   activeAnimation,
   cursorNoDrop,
+  onClickButton,
+  onDoubleClick,
+  handleClickEquals,
   ...props
 }: Readonly<{
   block: SourceCalcBlockType;
@@ -26,7 +29,9 @@ export function BlockLayout({
   mode?: MODE_ENUM;
   activeAnimation?: boolean;
   cursorNoDrop?: boolean;
+  onClickButton?: (value: number | string) => void;
   onDoubleClick?: () => void;
+  handleClickEquals?: () => void;
 }>) {
   const Block = block.data;
 
@@ -78,6 +83,7 @@ export function BlockLayout({
       className={classNames}
       ref={setNodeRef}
       style={style}
+      onDoubleClick={onDoubleClick}
       {...props}
       {...attributes}
       {...listeners}
@@ -87,6 +93,8 @@ export function BlockLayout({
         passive={passive}
         mode={mode}
         activeAnimation={activeAnimation}
+        onClickButton={onClickButton}
+        handleClickEquals={handleClickEquals}
       />
     </div>
   );

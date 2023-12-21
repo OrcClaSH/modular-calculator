@@ -8,10 +8,10 @@ import {
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import cn from 'classnames';
 
-import { selectCalcMode } from '@entities/calculator';
+import { calcActions, selectCalcMode } from '@entities/calculator';
 
 import { DND_DISABLED, MODE_ENUM } from '@shared/config/constants';
-import { useAppSelector } from '@shared/model/hooks';
+import { useAppDispatch, useAppSelector } from '@shared/model/hooks';
 import { BlockLayout } from '@shared/ui/blocks';
 import { DropLineImg } from '@shared/ui/img';
 
@@ -25,6 +25,16 @@ export function TotalCalc() {
   const mode = useAppSelector(selectCalcMode);
   const isModeConstructor = mode === MODE_ENUM.CONSTRUCTOR;
   const isModeRuntime = mode === MODE_ENUM.RUNTIME;
+
+  const dispatch = useAppDispatch();
+
+  const handleClickButton = (value: number | string) => {
+    dispatch(calcActions.setValue(value));
+  };
+
+  const handleClickEquals = () => {
+    dispatch(calcActions.calculate());
+  };
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -70,12 +80,16 @@ export function TotalCalc() {
               activeAnimation={isModeRuntime}
               disabled={isModeConstructor}
               cursorNoDrop={DND_DISABLED.includes(blockId) && isModeConstructor}
+              onClickButton={handleClickButton}
+              handleClickEquals={handleClickEquals}
             />
           ))}
         </SortableContext>
         {isNeedDropLine && !isNeedFirstDropLine && <DropLineImg />}
         <DragOverlay dropAnimation={null}>
-          {activeBlock && <BlockLayout block={activeBlock} />}
+          {activeBlock && (
+            <BlockLayout block={activeBlock} onClickButton={handleClickButton} />
+          )}
         </DragOverlay>
       </div>
     </DndContext>
