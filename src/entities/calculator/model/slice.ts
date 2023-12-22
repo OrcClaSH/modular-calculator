@@ -2,6 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { CALC_OPERATIONS, ERROR_DISPLAY_TEXT, MODE_ENUM } from '@shared/config/constants';
 import { removeLeadingZeros } from '@shared/lib/remove-leading-zeros';
+import { replaceComma } from '@shared/lib/replace-comma';
 
 interface ICalcState {
   calcMode: MODE_ENUM;
@@ -70,36 +71,33 @@ export const calcSlice = createSlice({
     },
 
     calculate(state) {
-      const valuePrev = parseFloat(state.valuePrev.replace(',', '.'));
-      const value = parseFloat(state.value.replace(',', '.'));
-      let result;
-      let resultStr;
+      const valuePrev = replaceComma(state.valuePrev);
+      const value = replaceComma(state.value);
 
       try {
         const operation = CALC_OPERATIONS[state.valueOperation];
         if (!operation) {
-          state.result = ERROR_DISPLAY_TEXT;
-          return;
+          throw new Error(ERROR_DISPLAY_TEXT);
         }
-        result = operation(valuePrev, value);
+
+        const result = operation(valuePrev, value);
+        const resultStr = result.toString();
+
+        const maxDisplayLength = 11;
+        const decimalSeparator = '.';
+        const maxLength =
+          maxDisplayLength - (resultStr.includes(decimalSeparator) ? 1 : 0);
+
+        if (resultStr.length > maxLength) {
+          state.result = result.toPrecision(maxLength);
+        } else {
+          state.result = resultStr;
+        }
+
+        state.valuePrev = resultStr;
       } catch (error) {
         state.result = ERROR_DISPLAY_TEXT;
-        return;
       }
-
-      resultStr = String(result);
-
-      if (resultStr.length > 12) {
-        resultStr = result.toFixed(3);
-      }
-
-      if (result > 999_999_999_999) {
-        state.result = parseFloat(result.toFixed(3)).toExponential(9);
-      } else {
-        state.result = resultStr;
-      }
-
-      state.valuePrev = resultStr;
     },
   },
 });
