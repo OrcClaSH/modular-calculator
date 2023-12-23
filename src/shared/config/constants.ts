@@ -55,5 +55,7 @@ export const CALC_OPERATIONS: { [key: string]: (a: number, b: number) => number 
   x: (a, b) => a * b,
 };
 
-export const NUMBER_BUTTONS = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0, ','];
+export const NUMBER_BUTTONS = ['7', '8', '9', '4', '5', '6', '1', '2', '3', '0', ','];
 export const CALC_OPERATION_BUTTONS = ['/', 'x', '-', '+'];
+
+export const MAX_DISPLAY_LENGTH = 11;

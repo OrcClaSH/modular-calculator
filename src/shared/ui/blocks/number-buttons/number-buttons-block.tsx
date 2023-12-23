@@ -22,7 +22,7 @@ export function NumberButtonsBlock({
       {NUMBER_BUTTONS.map((item) => (
         <Button
           key={item}
-          size={item !== 0 ? SizeEnum.SM : SizeEnum.MD}
+          size={item !== '0' ? SizeEnum.SM : SizeEnum.MD}
           disabled={disabled}
           activeAnimation={activeAnimation}
           onClick={() => handleClickButton(item)}
