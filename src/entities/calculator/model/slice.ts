@@ -1,7 +1,12 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { CALC_OPERATIONS, ERROR_DISPLAY_TEXT, MODE_ENUM } from '@shared/config/constants';
-import { removeLeadingZeros } from '@shared/lib/remove-leading-zeros';
+import {
+  CALC_OPERATIONS,
+  ERROR_DISPLAY_TEXT,
+  MAX_DISPLAY_LENGTH,
+  MODE_ENUM,
+} from '@shared/config/constants';
+import { formationDisplayValue } from '@shared/lib/formation-display-value';
 import { replaceComma } from '@shared/lib/replace-comma';
 
 interface ICalcState {
@@ -12,16 +17,18 @@ interface ICalcState {
   valueOperation: string;
   result: string;
   isLastString: boolean;
+  isLastEqual: boolean;
 }
 
 const initialState: ICalcState = {
-  calcMode: MODE_ENUM.CONSTRUCTOR,
-  totalCalcBlocksIds: [],
+  calcMode: MODE_ENUM.RUNTIME, // TODO
+  totalCalcBlocksIds: [4, 3, 2, 1], // TODO
   value: '',
   valuePrev: '',
   valueOperation: '',
   result: '',
   isLastString: false,
+  isLastEqual: false,
 };
 
 export const calcSlice = createSlice({
@@ -39,35 +46,68 @@ export const calcSlice = createSlice({
       state.totalCalcBlocksIds = action.payload;
     },
 
-    setValue(state, action: PayloadAction<number | string>) {
+    setValue(state, action: PayloadAction<string>) {
       const value = action.payload;
 
       if (typeof value === 'string' && value in CALC_OPERATIONS) {
+        if (state.isLastEqual) {
+          state.valueOperation = value;
+          state.value = '';
+          state.isLastString = true;
+          state.isLastEqual = false;
+          return;
+        }
         state.valueOperation = value;
         state.valuePrev = state.value;
         state.value = '';
         state.isLastString = true;
+        state.isLastEqual = false;
         return;
       }
 
       if (value === ',') {
         if (state.value.includes(',')) {
+          state.isLastEqual = false;
           return;
         }
-        state.value += value;
-        state.result = removeLeadingZeros(state.value);
+        if (state.value) {
+          state.value += value;
+        } else {
+          state.value = '0,';
+        }
+        state.result = formationDisplayValue(state.value);
+        state.isLastEqual = false;
+        return;
+      }
+
+      if (state.isLastEqual) {
+        state.valuePrev = state.value;
+        state.value = value;
+        state.result = formationDisplayValue(state.value);
+        state.isLastEqual = false;
         return;
       }
 
       if (state.isLastString) {
         state.value += value;
         state.isLastString = false;
-        state.result = removeLeadingZeros(state.value);
+        state.result = formationDisplayValue(state.value);
+        state.isLastEqual = false;
+        return;
+      }
+
+      if (
+        state.result.length > MAX_DISPLAY_LENGTH &&
+        !Number.isNaN(Number(state.result)) &&
+        !state.isLastEqual
+      ) {
+        state.isLastEqual = false;
         return;
       }
 
       state.value += value;
-      state.result = removeLeadingZeros(state.value);
+      state.result = formationDisplayValue(state.value);
+      state.isLastEqual = false;
     },
 
     calculate(state) {
@@ -83,10 +123,9 @@ export const calcSlice = createSlice({
         const result = operation(valuePrev, value);
         const resultStr = result.toString();
 
-        const maxDisplayLength = 11;
         const decimalSeparator = '.';
         const maxLength =
-          maxDisplayLength - (resultStr.includes(decimalSeparator) ? 1 : 0);
+          MAX_DISPLAY_LENGTH - (resultStr.includes(decimalSeparator) ? 1 : 0);
 
         if (resultStr.length > maxLength) {
           state.result = result.toPrecision(maxLength);
@@ -95,6 +134,7 @@ export const calcSlice = createSlice({
         }
 
         state.valuePrev = resultStr;
+        state.isLastEqual = true;
       } catch (error) {
         state.result = ERROR_DISPLAY_TEXT;
       }
