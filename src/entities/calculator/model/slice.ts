@@ -120,7 +120,7 @@ export const calcSlice = createSlice({
           throw new Error(ERROR_DISPLAY_TEXT);
         }
 
-        const result = operation(valuePrev, value);
+        const result = Number(operation(valuePrev, value).toFixed(3));
         const resultStr = result.toString();
 
         const decimalSeparator = '.';
