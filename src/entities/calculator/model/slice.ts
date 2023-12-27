@@ -66,14 +66,15 @@ export const calcSlice = createSlice({
       }
 
       if (value === ',') {
-        if (state.value.includes(',')) {
-          state.isLastEqual = false;
-          return;
-        }
-        if (state.value) {
+        const isDecimalInStateValue = state.value.includes(',');
+        if (isDecimalInStateValue && !state.isLastEqual) {
           state.value += value;
         } else {
           state.value = '0,';
+        }
+        if (isDecimalInStateValue) {
+          state.isLastEqual = false;
+          return;
         }
         state.result = formationDisplayValue(state.value);
         state.isLastEqual = false;
