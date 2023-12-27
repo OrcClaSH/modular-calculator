@@ -6,9 +6,10 @@ import {
   useSensors,
 } from '@dnd-kit/core';
 
-import { SourceCalcBlocks, useSourceBlocks } from '@widgets/source-calc-blocks';
 import { ToggleMode } from '@widgets/toggle-mode';
-import { TotalCalc } from '@widgets/total-calc';
+
+import { SourceCalcBlocks, useSourceBlocks } from '@features/source-calc-blocks';
+import { TotalCalc } from '@features/total-calc';
 
 import { BlockLayout } from '@shared/ui/blocks';
 
