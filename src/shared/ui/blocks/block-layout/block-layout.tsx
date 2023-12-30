@@ -29,7 +29,7 @@ export function BlockLayout({
   mode?: MODE_ENUM;
   activeAnimation?: boolean;
   cursorNoDrop?: boolean;
-  onClickButton?: (value: number | string) => void;
+  onClickButton?: (value: string) => void;
   onDoubleClick?: () => void;
   handleClickEquals?: () => void;
 }>) {

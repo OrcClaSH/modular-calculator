@@ -24,7 +24,7 @@ type DataFunction = (args: {
   value?: number;
   mode?: MODE_ENUM;
   activeAnimation?: boolean;
-  onClickButton?: (value: number | string) => void;
+  onClickButton?: (value: string) => void;
   handleClickEquals?: () => void;
 }) => ReactElement;
 

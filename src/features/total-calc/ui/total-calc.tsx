@@ -28,7 +28,7 @@ export function TotalCalc() {
 
   const dispatch = useAppDispatch();
 
-  const handleClickButton = (value: number | string) => {
+  const handleClickButton = (value: string) => {
     dispatch(calcActions.setValue(value));
   };
 

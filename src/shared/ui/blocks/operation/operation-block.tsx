@@ -10,9 +10,9 @@ export function OperationBlock({
 }: Readonly<{
   disabled?: boolean;
   activeAnimation?: boolean;
-  onClickButton?: (value: number | string) => void;
+  onClickButton?: (value: string) => void;
 }>) {
-  const handleClickButton = (item: string | number) => {
+  const handleClickButton = (item: string) => {
     if (onClickButton) {
       onClickButton(item);
     }

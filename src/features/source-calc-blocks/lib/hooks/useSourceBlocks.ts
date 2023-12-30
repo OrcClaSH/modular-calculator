@@ -1,4 +1,4 @@
-import { DragEndEvent, DragOverEvent, DragStartEvent } from '@dnd-kit/core';
+import { DragEndEvent, DragStartEvent } from '@dnd-kit/core';
 import { useState } from 'react';
 
 import { calcActions, selectTotalCalcBlocksIds } from '@entities/calculator';

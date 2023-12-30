@@ -16,8 +16,8 @@ export interface ICalcState {
 }
 
 const initialState: ICalcState = {
-  calcMode: MODE_ENUM.RUNTIME, // TODO
-  totalCalcBlocksIds: [4, 3, 2, 1], // TODO
+  calcMode: MODE_ENUM.CONSTRUCTOR,
+  totalCalcBlocksIds: [],
   value: '',
   valuePrev: '',
   valueOperation: '',
