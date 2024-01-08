@@ -16,8 +16,13 @@
     cursor: pointer;
     pointer-events: all;
 
-    @media (hover: hover), (hover: none) {
-      &:hover,
+    @media (hover: hover) {
+      &:hover {
+        border: 2px solid var(--color-epsilon);
+      }
+    }
+
+    @media (hover: none) {
       &:active {
         border: 2px solid var(--color-epsilon);
       }
