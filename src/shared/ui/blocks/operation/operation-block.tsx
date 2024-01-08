@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { CALC_OPERATION_BUTTONS } from '@shared/config/constants';
 import { Button } from '@shared/ui/buttons';
@@ -14,6 +14,8 @@ export function OperationBlock({
   activeAnimation?: boolean;
   onClickButton?: (value: string) => void;
 }>) {
+  const [activeKey, setActiveKey] = useState<string | null>(null);
+
   const handleClickButton = (item: string) => {
     if (onClickButton) {
       onClickButton(item);
@@ -21,10 +23,15 @@ export function OperationBlock({
   };
 
   const handleKeyDown = (event: KeyboardEvent) => {
-    const { key } = event;
+    const key = event.key !== '*' ? event.key : 'x';
 
     if (!disabled && onClickButton && CALC_OPERATION_BUTTONS.includes(key)) {
       onClickButton(key);
+      setActiveKey(key);
+
+      setTimeout(() => {
+        setActiveKey(null);
+      }, 100);
     }
   };
 
@@ -42,6 +49,7 @@ export function OperationBlock({
           onClick={() => handleClickButton(operator)}
           disabled={disabled}
           activeAnimation={activeAnimation}
+          isPressed={activeKey === operator}
         >
           {operator}
         </Button>

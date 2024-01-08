@@ -1,61 +1,62 @@
 .button {
   width: 52px;
   height: 48px;
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  line-height: inherit;
+  font: inherit;
   color: inherit;
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
-  background-color: (var(--color-main-bg));
+  background-color: var(--color-main-bg);
   pointer-events: none;
   transition:
     border 0.1s ease,
     color 0.1s ease,
     background-color 0.1s ease;
-}
-
-.active {
-  cursor: pointer;
-  pointer-events: all;
-
-  @media (hover: hover) {
-    &:hover {
-      border: 2px solid var(--color-epsilon);
-    }
-  }
-
-  @media (hover: none) {
-    &:active {
-      border: 2px solid var(--color-epsilon);
-    }
-  }
-
-  &:active {
-    color: var(--color-main-bg);
-    background-color: var(--color-epsilon);
-  }
-}
-
-.sm {
-  width: 72px;
-}
-
-.md {
-  width: 152px;
-}
-
-.lg {
-  width: 232px;
-  height: 64px;
-  background-color: var(--color-epsilon);
-  color: var(--color-main-bg);
 
   &.active {
+    cursor: pointer;
+    pointer-events: all;
+
+    @media (hover: hover), (hover: none) {
+      &:hover,
+      &:active {
+        border: 2px solid var(--color-epsilon);
+      }
+    }
+
     &:active {
+      color: var(--color-main-bg);
+      background-color: var(--color-epsilon);
+    }
+  }
+
+  &.sm {
+    width: 72px;
+  }
+
+  &.md {
+    width: 152px;
+  }
+
+  &.lg {
+    width: 232px;
+    height: 64px;
+    background-color: var(--color-epsilon);
+    color: var(--color-main-bg);
+
+    &.active {
+      &:active {
+        color: var(--color-epsilon);
+        background-color: var(--color-main-bg);
+      }
+    }
+  }
+
+  &.pressKeyboard {
+    background-color: var(--color-epsilon);
+
+    &.lg {
       color: var(--color-epsilon);
-      background-color: (var(--color-main-bg));
+      background-color: var(--color-main-bg);
     }
   }
 }

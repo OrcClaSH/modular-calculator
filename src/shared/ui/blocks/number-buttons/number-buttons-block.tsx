@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { NUMBER_BUTTONS, SizeEnum } from '@shared/config/constants';
 import { Button } from '@shared/ui/buttons';
@@ -14,6 +14,7 @@ export function NumberButtonsBlock({
   activeAnimation?: boolean;
   onClickButton?: (value: string) => void;
 }>) {
+  const [activeKey, setActiveKey] = useState<string | null>(null);
   const handleClickButton = (item: string) => {
     if (onClickButton) {
       onClickButton(item);
@@ -25,6 +26,11 @@ export function NumberButtonsBlock({
 
     if (!disabled && onClickButton && NUMBER_BUTTONS.includes(key)) {
       handleClickButton(key);
+      setActiveKey(key);
+
+      setTimeout(() => {
+        setActiveKey(null);
+      }, 100);
     }
   };
 
@@ -43,6 +49,7 @@ export function NumberButtonsBlock({
           disabled={disabled}
           activeAnimation={activeAnimation}
           onClick={() => handleClickButton(item)}
+          isPressed={activeKey === item}
         >
           {item}
         </Button>

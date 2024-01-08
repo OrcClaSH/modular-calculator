@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { SizeEnum } from '@shared/config/constants';
 import { Button } from '@shared/ui/buttons';
@@ -12,11 +12,18 @@ export function EqualsBlock({
   activeAnimation?: boolean;
   handleClickEquals?: () => void;
 }>) {
+  const [activeKey, setActiveKey] = useState<string | null>(null);
+
   const handleKeyDown = (event: KeyboardEvent) => {
     const { key } = event;
 
     if (!disabled && handleClickEquals && (key === '=' || key === 'Enter')) {
       handleClickEquals();
+      setActiveKey('=');
+
+      setTimeout(() => {
+        setActiveKey(null);
+      }, 100);
     }
   };
 
@@ -32,6 +39,7 @@ export function EqualsBlock({
       disabled={disabled}
       activeAnimation={activeAnimation}
       onClick={handleClickEquals}
+      isPressed={activeKey === '='}
     >
       =
     </Button>
