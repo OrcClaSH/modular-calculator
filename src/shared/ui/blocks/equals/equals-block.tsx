@@ -15,7 +15,7 @@ export function EqualsBlock({
   const handleKeyDown = (event: KeyboardEvent) => {
     const { key } = event;
 
-    if (!disabled && handleClickEquals && key === '=') {
+    if (!disabled && handleClickEquals && (key === '=' || key === 'Enter')) {
       handleClickEquals();
     }
   };
