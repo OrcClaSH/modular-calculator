@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { NUMBER_BUTTONS, SizeEnum } from '@shared/config/constants';
 import { Button } from '@shared/ui/buttons';
 
@@ -17,6 +19,21 @@ export function NumberButtonsBlock({
       onClickButton(item);
     }
   };
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    const { key } = event;
+
+    if (!disabled && onClickButton && NUMBER_BUTTONS.includes(key)) {
+      handleClickButton(key);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [disabled]);
+
   return (
     <div className={styles.buttons}>
       {NUMBER_BUTTONS.map((item) => (

@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { CALC_OPERATION_BUTTONS } from '@shared/config/constants';
 import { Button } from '@shared/ui/buttons';
 
@@ -17,6 +19,20 @@ export function OperationBlock({
       onClickButton(item);
     }
   };
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    const { key } = event;
+
+    if (!disabled && onClickButton && CALC_OPERATION_BUTTONS.includes(key)) {
+      onClickButton(key);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [disabled]);
 
   return (
     <div className={styles.buttons}>
